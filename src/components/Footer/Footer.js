@@ -1,17 +1,15 @@
 import React from 'react';
 import '../../style.scss';
-import HeaderTitle from "./HeaderTitle/HeaderTitle";
-import HeaderMenu from "./HeaderMenu/HeaderMenu";
-import HeaderUserData from "./HeaderUserData/HeaderUserData";
+import FooterSocial from "./FooterSocial/FooterSocial";
 
-const Header = () => {
+const Footer = () => {
     return (
-        <header>
-            <HeaderTitle/>
-            <HeaderMenu/>
-            <HeaderUserData/>
-        </header>
+        <footer>
+            <p className="date">© 2022 <a href="/">WorldSinema</a>. Все права защищены.</p>
+            <FooterSocial/>
+            <p>Design by <a href="https://vk.com/id140406368">KeWNo</a>.</p>
+        </footer>
     )
 }
 
-export default Header;
+export default Footer;

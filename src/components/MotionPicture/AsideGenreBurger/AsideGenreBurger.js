@@ -1,39 +1,25 @@
 import React from 'react';
 import '../../../style.scss';
 
-const AsideGenre = () => {
+const AsideGenreBurger = (props) => {
     return (
-            <aside>
-                <h3>Жанры</h3>
-                <nav className="genre">
-                    <ul>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                    </ul>
-                </nav>
-            </aside>
             <aside className="asideBurger">
                 <h3>Жанры</h3>
                 <nav className="genre">
                     <ul>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
+                        {props.genre.map(el => {
+                            return <li><a href="">{el}</a></li>
+                        })}
+                        {/*<li><a href="">Черная комедия</a></li>*/}
+                        {/*<li><a href="">Черная комедия</a></li>*/}
+                        {/*<li><a href="">Черная комедия</a></li>*/}
+                        {/*<li><a href="">Черная комедия</a></li>*/}
+                        {/*<li><a href="">Черная комедия</a></li>*/}
+                        {/*<li><a href="">Черная комедия</a></li>*/}
+                        {/*<li><a href="">Черная комедия</a></li>*/}
+                        {/*<li><a href="">Черная комедия</a></li>*/}
+                        {/*<li><a href="">Черная комедия</a></li>*/}
+                        {/*<li><a href="">Черная комедия</a></li>*/}
                     </ul>
                 </nav>
                 <img src="img/arrowR.png" className="arrow" id="arrow" alt=""/>
@@ -41,4 +27,4 @@ const AsideGenre = () => {
     )
 }
 
-export default AsideGenre;
+export default AsideGenreBurger;

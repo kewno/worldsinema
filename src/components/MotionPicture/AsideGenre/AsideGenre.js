@@ -1,54 +1,26 @@
 import React from 'react';
-import '../../style.scss';
-import Pagination from "./Pagination/Pagination";
-import Posts from "./Posts/Posts";
+import '../../../style.scss';
+import {NavLink} from "react-router-dom";
 
-const MotionPicture = () => {
+const AsideGenre = (props) => {
+    //debugger
     return (
-        // <Header />
-        <main>
             <aside>
                 <h3>Жанры</h3>
                 <nav className="genre">
                     <ul>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
+                        {props.genre.map(el => {
+                            return <li><NavLink to={`/motionPicture/${el.name}`} 
+                            onClick={() => {
+                                props.setPictureForGenre(el.name)
+                            }}
+                            //className='active'
+                            >{el.name}</NavLink></li>
+                        })}
                     </ul>
                 </nav>
             </aside>
-            <aside className="asideBurger">
-                <h3>Жанры</h3>
-                <nav className="genre">
-                    <ul>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                        <li><a href="">Черная комедия</a></li>
-                    </ul>
-                </nav>
-                <img src="img/arrowR.png" className="arrow" id="arrow" alt=""/>
-            </aside>
-            <div className="content">
-                <Posts/>
-                <Pagination/>
-            </div>
-        </main>
-        // <Footer />
     )
 }
 
-export default MotionPicture;
+export default AsideGenre;

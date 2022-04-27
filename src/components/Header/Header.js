@@ -1,19 +1,19 @@
 import React from 'react';
 import '../../style.scss';
-import FormSignUp from "./FormSignUp/FormSignUp";
+import HeaderTitle from "./HeaderTitle/HeaderTitle";
+import HeaderMenu from "./HeaderMenu/HeaderMenu";
+import HeaderUserData from "./HeaderUserData/HeaderUserData";
 
-const SignUp = () => {
+const Header = () => {
     return (
-        <div className="containerSignUp">
-            <main>
-                <div className="container">
-                    <img src={require('../../img/logo.png')} alt="logo" className="logo"/>
-                    <h1>WorldCinema</h1>
-                    <FormSignUp />
-                </div>
-            </main>
-        </div>
+        <header>
+            {/*<div className={'container'}>*/}
+                <HeaderTitle/>
+                <HeaderMenu/>
+                <HeaderUserData/>
+            {/*</div>*/}
+        </header>
     )
 }
 
-export default SignUp;
+export default Header;

@@ -1,44 +1,23 @@
 import React from 'react';
-import '../../../style.scss';
+import '../../../../style.scss';
+import Frame from "./Frame/Frame";
 
-const Frames = () => {
+const AllFrames = () => {
     return (
-        <div className="wrapFrames">
-            <h3 className="frameName">Кадры</h3>
-
             <div className="frameWrap">
                 <div className="frames">
-                    <div className="frame">
-                        <img src="img/cadr-1.png" alt=""/>
-                    </div>
-                    <div className="frame">
-                        <img src="img/cadr-2.png" alt=""/>
-                    </div>
-                    <div className="frame">
-                        <img src="img/cadr-3.png" alt=""/>
-                    </div>
-                    <div className="frame">
-                        <img src="img/cadr-3.png" alt=""/>
-                    </div>
-                    <div className="frame">
-                        <img src="img/cadr-3.png" alt=""/>
-                    </div>
-                    <div className="frame">
-                        <img src="img/cadr-3.png" alt=""/>
-                    </div>
-                    <div className="frame">
-                        <img src="img/cadr-3.png" alt=""/>
-                    </div>
-                    <div className="frame">
-                        <img src="img/cadr-3.png" alt=""/>
-                    </div>
-                    <div className="frame">
-                        <img src="img/cadr-3.png" alt=""/>
-                    </div>
+                    <Frame/>
+                    <Frame/>
+                    <Frame/>
+                    <Frame/>
+                    <Frame/>
+                    <Frame/>
+                    <Frame/>
+                    <Frame/>
+                    <Frame/>
                 </div>
             </div>
-        </div>
     )
 }
 
-export default Frames;
+export default AllFrames;

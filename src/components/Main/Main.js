@@ -1,34 +1,37 @@
-import React from 'react';
-import '../../../../style.scss';
+import React, {useEffect} from 'react';
+import '../../style.scss';
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
+import MainHeader from "./MainHeader/MainHeader";
+import MainSlider from "./MainSlider/MainSlider";
+import {connect, useDispatch} from "react-redux";
+import {setActiveCinema, setFaviritePictureThunkCreator} from "../../redux/mainReducer";
 
-const Post = () => {
+const Main = (props) => {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(setFaviritePictureThunkCreator(1))
+    },[]);
     return (
-        <div className="postWrap">
-            <h3>Во все тяжкие</h3>
-            <div className="genre">
-                <a href="/">Криминальная драма</a>
-                <a href="/">Триллер</a>
-                <a href="/">Современный вестерн</a>
-                <a href="/">Черная комедия</a>
-            </div>
-            <div className="post">
-                <img src={require('../../../../img/post-1.png')} alt="post"/>
-                    <div className="description">
-                        <p className="producer"><span>Режиссёр:</span> Винс Гиллиган</p>
-                        <p className="country"><span>Страна:</span> США</p>
-                        <p className="years"><span>Год:</span> 2008-2013</p>
-                        <p className="descriptionText"><span>Описание:</span> Lorem ipsum dolor sit amet
-                            consectetur adipisicing elit. Asperiores ducimus sequi deserunt. Molestias
-                            veniam, cupiditate placeat explicabo quisquam voluptas et culpa, repellat esse
-                            quidem iure blanditiis illum...
-                        </p>
-                        <div className="lookingWrap">
-                            <a href="" className="looking">Смотреть</a>
-                        </div>
-                    </div>
-            </div>
+        <div className="mainContainer">
+            <Header/>
+            <main>
+                <div className="content">
+                    <MainHeader/>
+        
+                    <MainSlider dataPicture={props.dataPicture}/>
+                </div>
+            </main>
+            <Footer/>
         </div>
     )
 }
 
-export default Post;
+const mapStateToProps = (state) => {
+    return {
+        dataPicture : state.main.favoriteMotionData
+    }
+}
+
+export default connect(mapStateToProps, {setActiveCinema, setFaviritePictureThunkCreator})(Main);
+//export default Main;

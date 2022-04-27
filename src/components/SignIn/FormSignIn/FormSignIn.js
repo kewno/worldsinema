@@ -1,24 +1,16 @@
 import React from 'react';
-import '../../style.scss';
+import '../../../style.scss';
+import {NavLink} from "react-router-dom";
 
-const SignIn = () => {
+const FormSignIn = () => {
     return (
-        <div className="containerSignIn">
-        <main>
-            <div className="container">
-                {/*'../../img/logo.png'*/}
-                <img src={require('../../img/logo.png')} alt="logo" className="logo"/>
-                <h1>WorldCinema</h1>
-                <form action="" className="formSignIn">
-                    <input type="text" placeholder="E-mail"/>
-                    <input type="password" placeholder="Пароль"/>
-                    <button>Войти</button>
-                    <a href="signUp.html" className="link">Регистрация</a>
-                </form>
-            </div>
-        </main>
-        </div>
+        <form action="" className="formSignIn">
+            <input type="text" placeholder="E-mail"/>
+            <input type="password" placeholder="Пароль"/>
+            <button>Войти</button>
+            <NavLink to='/signUp' className="link">Регистрация</NavLink>
+        </form>
     )
 }
 
-export default SignIn;
+export default FormSignIn;
