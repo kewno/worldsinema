@@ -4,7 +4,6 @@ import {connect, useDispatch} from "react-redux";
 import Pagination from "./Pagination/Pagination";
 import Posts from "./Posts/Posts";
 import AsideGenre from "./AsideGenre/AsideGenre";
-import AsideGenreBurger from "./AsideGenreBurger/AsideGenreBurger";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import {

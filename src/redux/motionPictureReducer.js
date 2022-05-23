@@ -109,13 +109,6 @@ let initMotionPicture = {
 let motionPictureReducer = (state = initMotionPicture, action) => {
     let stateClone = {...state};
     if (action.type === SET_ACTIVE_CINEMA) {
-        // let active = stateClone.motionData.filter(el => {
-        //     if (el.id === action.id) {
-        //         return el;
-        //     }
-        // })
-        // stateClone.activeCinema = active[0];
-        //stateClone.activeCinema = [...state.picture]
         stateClone.activeCinema = action.picture
     } else if (action.type === SET_ACTIVE_GENRE) {
         stateClone.activeGenre = action.genre;
