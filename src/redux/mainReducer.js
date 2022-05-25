@@ -1,4 +1,4 @@
-import {motionPictureAPI} from "../api/api";
+import {motionPictureAPI, userAPI} from "../api/api";
 
 const SET_ACTIVE_CINEMA = 'SET_ACTIVE_CINEMA';
 const SET_FAVORITE_PICTURE = 'SET_FAVORITE_PICTURE';
@@ -9,7 +9,7 @@ export const setActiveCinema = (id) => {
 
 export const setPicture = (picture) => {
     return {type: SET_FAVORITE_PICTURE, picture};
-}
+} 
 
 export const setFaviritePictureThunkCreator = (idUser) => {
     return async (dispatch) => {
@@ -18,12 +18,24 @@ export const setFaviritePictureThunkCreator = (idUser) => {
     }
 }
 
+export const registrationThunkCreator = (name, surname, dateRegistr, email, password, gender) => { //'имя', 'фамилия', '2022-03-20', 'mail@mail.ru', '123', 1
+    return async (dispatch) => {
+        let response = await userAPI.registration(name, surname, dateRegistr, email, password, gender)
+            //debugger
+            if (response.data) {
+                //dispatch(isAuthThunkCreator());
+            } else {
+                //dispatch(setErrors(response.data.messages));
+            }
+    }
+}
+
 let initMain = {
     favoriteMotionData : [
-        {id: 1, name: 'Во все тяжкие1', poster: 'poster-5.png'},
-        {id: 2, name: 'Мир дикого запада', poster: 'poster-1.png'},
-        {id: 3, name: 'Во все тяжкие3', poster: 'poster-3.png'},
-        {id: 4, name: 'Во все тяжкие4', poster: 'poster-4.png'}
+        // {id: 1, name: 'Во все тяжкие1', poster: 'poster-5.png'},
+        // {id: 2, name: 'Мир дикого запада', poster: 'poster-1.png'},
+        // {id: 3, name: 'Во все тяжкие3', poster: 'poster-3.png'},
+        // {id: 4, name: 'Во все тяжкие4', poster: 'poster-4.png'}
     ]
 }
 
@@ -38,6 +50,7 @@ let mainReducer = (state = initMain, action) => {
         // stateClone.activeCinema = active[0];
     } else if (action.type === SET_FAVORITE_PICTURE) {
         stateClone.favoriteMotionData = [...state.favoriteMotionData]
+        
         stateClone.favoriteMotionData = [...action.picture]
     }
     return stateClone;

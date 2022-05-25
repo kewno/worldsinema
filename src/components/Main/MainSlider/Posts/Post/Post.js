@@ -1,15 +1,17 @@
 import React from 'react';
+//import { NavLink } from 'react-router-dom';
 import '../../../../../style.scss';
+import {Navigate, useNavigate} from 'react-router-dom';
 
 const Post = (props) => {
-     // () => {props.openPicture()}
-    let openPicture = (id) => {
-        // <NavLink to={`/picture/${id}`}></NavLink>
+    const navigate = useNavigate()
+    let handleClick = (id) => {
+        navigate(`/picture/${id}`)
     }
     return (
         
-        <div className="post" onClick={() => {openPicture(props.id)}}>
-            <img src={require(`../../../../../img/${props.poster}`)} alt=""/>
+        <div className="post">
+            <img onClick={() => handleClick(props.id)} src={require(`../../../../../img/${props.poster}`)} alt=""/>
             <p>{props.name}</p>
         </div>
     )
