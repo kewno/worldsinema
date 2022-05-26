@@ -1,8 +1,12 @@
 import React from 'react';
 import '../../../../style.scss';
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 
 const Post = (props) => {
+    const navigate = useNavigate()
+    let handleClick = (id) => {
+        navigate(`/picture/${id}`)
+    }
     return (
         <div className="postWrap">
             <h3>{props.name}</h3>
@@ -22,7 +26,7 @@ const Post = (props) => {
                         <p className="descriptionText"><span>Описание: </span>{props.description}...
                         </p>
                         <div className="lookingWrap">
-                            <NavLink to={`/picture/${props.pictureId}`} className="looking">Смотреть</NavLink>
+                            <NavLink to={`/picture/${props.pictureId}`} onClick={() => handleClick(props.pictureId)} className="looking">Смотреть</NavLink>
                         </div>
                     </div>
             </div>

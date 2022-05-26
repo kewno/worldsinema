@@ -1,5 +1,7 @@
 import React from 'react';
 import {Formik} from 'formik'
+import { useDispatch } from 'react-redux';
+import { setCommentThunkCreator } from '../../../../redux/motionPictureReducer';
 //import * as yup from 'yup'
 
 const AddCommentForm = (props) => {
@@ -7,6 +9,7 @@ const AddCommentForm = (props) => {
     //     textMessage: yup.string().typeError('Должно быть строкой').required('Обязательно')
     // })
     //const validationsSchema ={() => ({})}
+    let dispatch = useDispatch()
     return (
         <Formik initialValues={{
             textComment: ''
@@ -30,7 +33,8 @@ const AddCommentForm = (props) => {
                     <button
                         onClick={() => {
                             if (values.textComment !== '') {
-                                props.addComment('Данные пользователя', values.textComment)
+                                //props.addComment('Данные пользователя', values.textComment)
+                                dispatch(setCommentThunkCreator(1, values.textComment))//props.id
                                 values.textComment = ''
                             }
                         }}

@@ -6,7 +6,7 @@ const instanse = axios.create({
     //withCredentials: true,
     headers: {
         'Content-Type': 'application/json;charset=utf-8'
-    }//,
+    }
     //withCredentials: true
     // baseURL : 'https://social-network.samuraijs.com/api/1.0/',
     // withCredentials: true,
@@ -16,14 +16,14 @@ const instanse = axios.create({
 })
 
 export let userAPI = {
-    isAuth() {
-        return instanse.get(`auth/me`)
+    isAuth(id) {
+        return instanse.get(`api.php/me`, {id})
     },
     login(email, password) {
-        return instanse.post(`api.php?auth/login`, {email, password, rememberMe: true})
+        return instanse.post(`api.php/login`, {email, password})
     },
-    logout() {
-        return instanse.delete(`api.php?auth/login`)
+    logout(id) {
+        return instanse.delete(`api.php/logout`, {id})
     },
     registration(name, surname, dateRegistr, email, password, gender) {
         return instanse.post(`api.php/registration`, {name, surname, dateRegistr, email, password, gender})
@@ -54,5 +54,16 @@ export let motionPictureAPI = {
     getCommentsForPicture(picture) {
         return instanse.get(`api.php?comments&idCinemas=${picture}`)
             .then(response => response.data)
+    },
+    postCommentsForPicture(id, comment) {
+        return instanse.post(`api.php/comment`, {id, comment})
+            //.then(response => response.data)
+    },
+    postFavoriteForPicture(idCinema, idUser) { //$request = explode("/", substr(@$_SERVER['PATH_INFO'], 1)); return instanse.post(`api.php/favorite/${idCinema}/${idUser}`)
+        return instanse.post(`api.php/comment`, {idCinema, idUser})
+            //.then(response => response.data)
+    },
+    deleteFavoriteForPicture(idCinema, idUser) {
+        //return instanse.delete(`api.php/favorite/${idCinema}/${idUser}`)
     }
 }

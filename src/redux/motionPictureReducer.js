@@ -83,8 +83,27 @@ export const setCommentsForPictureThunkCreator = (picture) => {
     }
 }
 
+export const setCommentThunkCreator = (id, comment) => {
+    return async (dispatch) => {
+        let response = await motionPictureAPI.postCommentsForPicture(id, comment)
+        dispatch(setComments(response.data.items));
+    }
+}
+export const setFavoriteThunkCreator = (idCinema, idUser) => {
+    return async (dispatch) => {
+        let response = await motionPictureAPI.postFavoriteForPicture(idCinema, idUser)
+        debugger
+    }
+}
+export const deleteFavoriteThunkCreator = (idCinema, idUser) => {
+    return async (dispatch) => {
+        let response = await motionPictureAPI.deleteFavoriteForPicture(idCinema, idUser)
+        debugger
+    }
+}
+
 // export const addCommentsForPictureThunkCreator = (message, idUser, idSinema) => { //comments
-//     return async (dispatch) => {
+//     return async (dispatch) => { postFavoriteForPicture(idCinema, idUser)
 //         let response = await motionPictureAPI.getCommentsForPicture(message, idUser, idSinema)
 //         dispatch(setComments(response.items));
 //     }
@@ -103,9 +122,7 @@ let initMotionPicture = {
     genre: [{name: 'Триллер'}],
     comments: []
 }
-//Eliot is in his happy place, unaware that he is being possessed by the
-//                     Monster. To have control over his body, Eliot must travel to the place
-//                     that contains his
+
 let motionPictureReducer = (state = initMotionPicture, action) => {
     let stateClone = {...state};
     if (action.type === SET_ACTIVE_CINEMA) {
@@ -115,11 +132,11 @@ let motionPictureReducer = (state = initMotionPicture, action) => {
     } else if (action.type === TOGGLE_FAVOURITES) {
         stateClone.motionData = [...stateClone.motionData]
         let id = stateClone.activeCinema.id - 1;
-        stateClone.motionData[id].favourites = !stateClone.motionData[id].favourites;
-
-        stateClone.activeCinema = {...stateClone.motionData[id]}
+        //debugger
+        stateClone.activeCinema = {...stateClone.activeCinema}
+        stateClone.activeCinema.favorites = !stateClone.activeCinema.favorites;
+        //stateClone.activeCinema = {...stateClone.motionData[id]}
     } else if (action.type === ADD_COMMENT) {
-        //comments
         stateClone.comments = [...state.comments]
         stateClone.comments.push({userName : action.userName, messages: action.message});
     } else if (action.type === SET_GENRES) {
