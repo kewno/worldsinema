@@ -1,6 +1,6 @@
 import React from 'react';
 import {Formik} from 'formik'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setCommentThunkCreator } from '../../../../redux/motionPictureReducer';
 //import * as yup from 'yup'
 
@@ -9,6 +9,8 @@ const AddCommentForm = (props) => {
     //     textMessage: yup.string().typeError('Должно быть строкой').required('Обязательно')
     // })
     //const validationsSchema ={() => ({})}
+    let idCinema = useSelector(state => state.motionPicture.activeCinema.id)
+    //debugger
     let dispatch = useDispatch()
     return (
         <Formik initialValues={{
@@ -34,7 +36,8 @@ const AddCommentForm = (props) => {
                         onClick={() => {
                             if (values.textComment !== '') {
                                 //props.addComment('Данные пользователя', values.textComment)
-                                dispatch(setCommentThunkCreator(1, values.textComment))//props.id
+                                //debugger
+                                dispatch(setCommentThunkCreator(idCinema, values.textComment))//props.id
                                 values.textComment = ''
                             }
                         }}

@@ -56,6 +56,7 @@ export const setGenresThunkCreator = () => {
 export const setActivePictureThunkCreator = (idPicture) => {
     return async (dispatch) => {
         let response = await motionPictureAPI.getPicture(idPicture)
+        //debu
         dispatch(setActiveCinema(response.items));
     }
 }
@@ -86,19 +87,22 @@ export const setCommentsForPictureThunkCreator = (picture) => {
 export const setCommentThunkCreator = (id, comment) => {
     return async (dispatch) => {
         let response = await motionPictureAPI.postCommentsForPicture(id, comment)
-        dispatch(setComments(response.data.items));
+        //debugger
+        dispatch(setComments(response.items));
     }
 }
 export const setFavoriteThunkCreator = (idCinema, idUser) => {
     return async (dispatch) => {
         let response = await motionPictureAPI.postFavoriteForPicture(idCinema, idUser)
-        debugger
+        //debugger
+        dispatch(toggleFavorites());
     }
 }
 export const deleteFavoriteThunkCreator = (idCinema, idUser) => {
     return async (dispatch) => {
         let response = await motionPictureAPI.deleteFavoriteForPicture(idCinema, idUser)
-        debugger
+        //debugger
+        dispatch(toggleFavorites());
     }
 }
 
@@ -134,6 +138,8 @@ let motionPictureReducer = (state = initMotionPicture, action) => {
         let id = stateClone.activeCinema.id - 1;
         //debugger
         stateClone.activeCinema = {...stateClone.activeCinema}
+        if (stateClone.activeCinema.favorites == '0') stateClone.activeCinema.favorites = false
+        if (stateClone.activeCinema.favorites == '1') stateClone.activeCinema.favorites = true
         stateClone.activeCinema.favorites = !stateClone.activeCinema.favorites;
         //stateClone.activeCinema = {...stateClone.motionData[id]}
     } else if (action.type === ADD_COMMENT) {

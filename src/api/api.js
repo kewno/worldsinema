@@ -57,13 +57,13 @@ export let motionPictureAPI = {
     },
     postCommentsForPicture(id, comment) {
         return instanse.post(`api.php/comment`, {id, comment})
-            //.then(response => response.data)
+            .then(response => response.data)
     },
     postFavoriteForPicture(idCinema, idUser) { //$request = explode("/", substr(@$_SERVER['PATH_INFO'], 1)); return instanse.post(`api.php/favorite/${idCinema}/${idUser}`)
         return instanse.post(`api.php/comment`, {idCinema, idUser})
-            //.then(response => response.data)
+            .then(response => response.data)
     },
     deleteFavoriteForPicture(idCinema, idUser) {
-        //return instanse.delete(`api.php/favorite/${idCinema}/${idUser}`)
+        return instanse.delete(`api.php/favorite/${idCinema}/${idUser}`)
     }
 }

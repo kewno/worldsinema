@@ -22,10 +22,10 @@ const Tags = (props) => {
                 
             {favorite != 0 && favorite ? <img onClick={() => {
                 dispatch(deleteFavoriteThunkCreator(id, 1))
-                return props.toggleFavorites()
+                //return props.toggleFavorites()
             }} src={require('../../../../../img/starA.png')} alt="" id="star-5"/> : <img onClick={() => {
                 dispatch(setFavoriteThunkCreator(id, 1))
-                return props.toggleFavorites()
+                //return props.toggleFavorites()
             }} src={require('../../../../../img/star.png')} alt="" id="star-5"/>}
             {/*<img src={require('../../../../../img/star.png')} alt="" id="star-5"/>*/}
         </div>
