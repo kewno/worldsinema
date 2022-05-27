@@ -16,14 +16,18 @@ const instanse = axios.create({
 })
 
 export let userAPI = {
-    isAuth(id) {
-        return instanse.get(`api.php/me`, {id})
+    isAuth() {
+        return instanse.get(`api.php?auth`)
+            .then(response => response.data)
     },
     login(email, password) {
-        return instanse.post(`api.php/login`, {email, password})
+        return instanse.post(`api.php/registration`, {email, password})
     },
+    // logout(id) {
+    //     return instanse.delete(`api.php/logout`, {id})
+    // },
     logout(id) {
-        return instanse.delete(`api.php/logout`, {id})
+        return instanse.get(`api.php?logout&id=${id}`)
     },
     registration(name, surname, dateRegistr, email, password, gender) {
         return instanse.post(`api.php/registration`, {name, surname, dateRegistr, email, password, gender})

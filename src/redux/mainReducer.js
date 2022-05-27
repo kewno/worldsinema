@@ -18,12 +18,12 @@ export const setFaviritePictureThunkCreator = (idUser) => {
     }
 }
 
-export const registrationThunkCreator = (name, surname, dateRegistr, email, password, gender) => { //'имя', 'фамилия', '2022-03-20', 'mail@mail.ru', '123', 1
-    return async (dispatch) => {
-        let response = await userAPI.registration(name, surname, dateRegistr, email, password, gender)
-        debugger
-    }
-}
+// export const registrationThunkCreator = (name, surname, dateRegistr, email, password, gender) => { //'имя', 'фамилия', '2022-03-20', 'mail@mail.ru', '123', 1
+//     return async (dispatch) => {
+//         //let response = await userAPI.registration(name, surname, dateRegistr, email, password, gender)
+//         //debugger
+//     }
+// }
 
 let initMain = {
     favoriteMotionData : [

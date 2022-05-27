@@ -1,9 +1,9 @@
 import React from 'react';
 import '../../../style.scss';
-import {NavLink} from "react-router-dom";
 import {Field, Formik} from 'formik'
 import * as yup from 'yup'
-//import { RadioGroup, RadioButton, RadioButtonGroup } from 'formik';
+import { registrationThunkCreator } from '../../../redux/motionPictureReducer';
+import { useDispatch } from 'react-redux';
 
 const FormSignUp = () => {
     const validationsSchema = yup.object().shape({
@@ -12,9 +12,8 @@ const FormSignUp = () => {
         login : yup.string().email('Введите верный email').required('Обязательно'),
         password : yup.string().typeError('Должно быть строкой').required('Обязательно'),
         confirmPassword: yup.string().oneOf([yup.ref('password')], 'Пароли не совпадают').required('Обязательно'),
-        //contact : yup.string().typeError('Не выбранно').required('Обязательно'),
     });
-    
+    let dispatch = useDispatch()
     return (
         <Formik initialValues={{
             name: '',
@@ -22,11 +21,11 @@ const FormSignUp = () => {
             login: '',
             password: '',
             confirmPassword: '',
-            //gender: '',
+            gender: 'М',
             //contact: ''
         }}
         validateOnBlur
-        onSubmit={(data) => {console.log(1)}}//props.setAuthThunkCreator(data.login, data.password)
+        onSubmit={(data) => dispatch(registrationThunkCreator(data))}//props.setAuthThunkCreator(data.login, data.password)
         validationSchema={validationsSchema}
         >
             {({values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty}) => (
@@ -86,9 +85,9 @@ const FormSignUp = () => {
                         {touched.confirmPassword && errors.confirmPassword && <p className='form-error'>{errors.confirmPassword}</p>}
 
                         <div className="gender">
-                            <input type="radio" checked id="contactChoice1" name="contact" value="email"/>
+                            <input type="radio" checked id="contactChoice1" name="gender" value={"M"}/>
                             <label htmlFor="contactChoice1">Мужчина</label>
-                            <input type="radio" id="contactChoice2" name="contact" value="phone"/>
+                            <input type="radio" id="contactChoice2" name="gender" value={"F"}/>
                             <label htmlFor="contactChoice2">Женщина</label>
                             
                         </div>

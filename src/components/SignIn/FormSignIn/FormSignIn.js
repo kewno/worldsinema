@@ -3,6 +3,8 @@ import '../../../style.scss';
 import {NavLink} from "react-router-dom";
 import {Formik} from 'formik'
 import * as yup from 'yup'
+import { useDispatch } from 'react-redux';
+import { loginThunkCreator } from '../../../redux/motionPictureReducer';
 
 const FormSignIn = () => {
     const validationsSchema = yup.object().shape({
@@ -10,6 +12,7 @@ const FormSignIn = () => {
         password : yup.string().typeError('Должно быть строкой').required('Обязательно'),
         //confirmPassword: yup.string().oneOf([yup.ref('password')], 'Пароли не совпадают').required('Обязательно'),
     });
+    let dispatch = useDispatch()
     
     return (
         <Formik initialValues={{
@@ -18,7 +21,7 @@ const FormSignIn = () => {
             //confirmPassword: '',
         }}
         validateOnBlur
-        onSubmit={(data) => {console.log(1)}}//props.setAuthThunkCreator(data.login, data.password)
+        onSubmit={(data) => dispatch(loginThunkCreator(data))}//loginThunkCreator
         validationSchema={validationsSchema}
         >
             {({values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty}) => (

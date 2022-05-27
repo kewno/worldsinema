@@ -68,6 +68,7 @@ header {
       }
       .logOut {
         &:hover {
+          cursor: pointer;
           color: $cOrange;
         }
       }

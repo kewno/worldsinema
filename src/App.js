@@ -7,11 +7,22 @@ import MotionPicture from "./components/MotionPicture/MotionPicture";
 import Picture from "./components/Picture/Picture";
 import Main from "./components/Main/Main";
 import AboutUs from './components/AboutUs/AboutUs'
+import { useDispatch, useSelector } from 'react-redux';
+import { isAuthThunkCreator } from './redux/motionPictureReducer';
+import { useEffect } from 'react';
+import {useNavigate} from 'react-router-dom';
 
 function App() {
+  let dispatch = useDispatch()
+  //navigate(`/picture/${id}`)
+  useEffect(() => {
+    //dispatch(registrationThunkCreator('имя', 'фамилия', '2022-03-20', 'mail@mail.ru', '123', 1))
+    dispatch(isAuthThunkCreator())
+  }, [])
+  
   return (
       <BrowserRouter>
-      <main>
+      <div>
           <Routes>
             <Route path='/signIn' element={<SignIn />}/>
             <Route path='/signUp' element={<SignUp />}/>
@@ -25,7 +36,7 @@ function App() {
             <Route path='/aboutUs' element={<AboutUs />}/>
             <Route exact path='/' element={<Main />}/>
           </Routes>
-      </main>
+      </div>
       </BrowserRouter>
   );
 }
