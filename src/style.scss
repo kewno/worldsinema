@@ -808,10 +808,18 @@ footer {
             margin: auto 0 5px auto;
           }
         }
-        video {
+        video, .videoPlayer {
           max-width: 1300px;
           width: 100%;
           margin: 0 auto;
+          //max-height: 600px;
+          //height: 500px;
+        }
+        .videoPlayer {
+          max-width: 1300px;
+          width: 100%;
+          margin: 0 auto;
+          height: 700px;
         }
         .ratings {
           display: flex;

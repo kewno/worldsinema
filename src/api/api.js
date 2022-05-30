@@ -5,8 +5,14 @@ const instanse = axios.create({
     baseURL : 'http://a0677263.xsph.ru/',
     //withCredentials: true,
     headers: {
-        'Content-Type': 'application/json;charset=utf-8'
-    }
+        'Content-Type': 'application/json;charset=utf-8',
+        //"API-KEY": "4d14356f-05ff-48ec-8658-216bd0815cbf"
+    },
+    withCredentials: true,
+    cookie: {httpOnly: true, secure: true, maxAge: 1000 * 60 * 60 * 48, sameSite: 'none'}
+    //cookie : ('token', '123', { sameSite: 'None', secure: true })
+    //SameSite: false
+    //crossDomain: true
     //withCredentials: true
     // baseURL : 'https://social-network.samuraijs.com/api/1.0/',
     // withCredentials: true,
