@@ -2,7 +2,7 @@ import * as axios from "axios";
 
 
 const instanse = axios.create({
-    baseURL : 'http://a0677263.xsph.ru/',
+    baseURL : 'https://u129668.test-handyhost.ru/',
     //withCredentials: true,
     headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -45,11 +45,13 @@ export let motionPictureAPI = {
         return instanse.get(`api.php?cinemas&page=${countPage}&count=${sizeUserOfPage}`)
             .then(response => response.data)
     },
-    getPicture(idPicture = 1) {
-        return instanse.get(`api.php?cinema&idCinemas=${idPicture}`)
+    getPicture(idPicture = 1, idUser) {
+        //debugger
+        return instanse.get(`api.php?cinema&idCinemas=${idPicture}&idUser=${idUser}`)
             .then(response => response.data)
     },
-    getFavoritePicture(idUser = 1) {
+    getFavoritePicture(idUser) {
+        //debugger
         return instanse.get(`api.php?favorites&id=${idUser}`)
             .then(response => response.data)
     },
@@ -65,8 +67,8 @@ export let motionPictureAPI = {
         return instanse.get(`api.php?comments&idCinemas=${picture}`)
             .then(response => response.data)
     },
-    postCommentsForPicture(id, comment) {
-        return instanse.post(`api.php/comment`, {id, comment})
+    postCommentsForPicture(id, comment, idUser) {
+        return instanse.post(`api.php/comment`, {id, comment, idUser})
             .then(response => response.data)
     },
     postFavoriteForPicture(idCinema, idUser) { //$request = explode("/", substr(@$_SERVER['PATH_INFO'], 1)); return instanse.post(`api.php/favorite/${idCinema}/${idUser}`)

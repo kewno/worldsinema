@@ -11,6 +11,7 @@ const VideoWrap = (props) => {
                    favourites={props.favourites}
                    toggleFavorites={props.toggleFavorites}
                    setPictureForGenre={props.setPictureForGenre}
+                   path={props.path}
             />
             <Description description={props.description}/>
         </div>

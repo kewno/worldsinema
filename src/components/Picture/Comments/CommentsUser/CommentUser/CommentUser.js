@@ -1,10 +1,11 @@
 import React from 'react';
 import '../../../../../style.scss';
 
-const CommentUser = (props) => {
+const CommentUser = (props) => { //avatar
+    //debugger
     return (
         <div className="comment">
-            <img className="" src={require('../../../../../img/avatar.png')} alt=""/>
+            <img className="" src={`https://u129668.test-handyhost.ru/avatar/${props.avatar}`} alt=""/>
             <div className="wrapText">
                 <h4>{props.name}</h4>
                 <p>{props.text}</p>

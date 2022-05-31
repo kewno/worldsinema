@@ -6,6 +6,8 @@ import '../../../../../style.scss';
 const Tags = (props) => {
     let favorite = useSelector(state => state.motionPicture.activeCinema.favorites)
     let id = useSelector(state => state.motionPicture.activeCinema.id)
+    let auth = useSelector(state => state.motionPicture.auth)
+    //let st = useSelector(state => state.motionPicture.favorites)
     //debugger
     let dispatch = useDispatch()
     let i = 0
@@ -21,10 +23,14 @@ const Tags = (props) => {
             </div>
                 
             {favorite != 0 && favorite ? <img onClick={() => {
-                dispatch(deleteFavoriteThunkCreator(id, 1))
+                if (auth.id) {
+                    dispatch(deleteFavoriteThunkCreator(id, auth.id))
+                }
                 //return props.toggleFavorites()
             }} src={require('../../../../../img/starA.png')} alt="" id="star-5"/> : <img onClick={() => {
-                dispatch(setFavoriteThunkCreator(id, 1))
+                if (auth.id) {
+                    dispatch(setFavoriteThunkCreator(id, auth.id))
+                }
                 //return props.toggleFavorites()
             }} src={require('../../../../../img/star.png')} alt="" id="star-5"/>}
             {/*<img src={require('../../../../../img/star.png')} alt="" id="star-5"/>*/}

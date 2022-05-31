@@ -11,7 +11,7 @@ const Post = (props) => {
     return (
         
         <div className="post">
-            <img onClick={() => handleClick(props.id)} src={require(`../../../../../img/${props.poster}`)} alt=""/>
+            <img onClick={() => handleClick(props.id)} src={`http://a0677263.xsph.ru/posters/${props.poster}`} alt="post"/>
             <p>{props.name}</p>
         </div>
     )

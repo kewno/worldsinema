@@ -4,6 +4,7 @@ import {Field, Formik} from 'formik'
 import * as yup from 'yup'
 import { registrationThunkCreator } from '../../../redux/motionPictureReducer';
 import { useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 const FormSignUp = () => {
     const validationsSchema = yup.object().shape({
@@ -96,7 +97,8 @@ const FormSignUp = () => {
                      disabled={!isValid && !dirty}
                      onClick={handleSubmit}//   console.log(!isValid + " " + !dirty)
                      type={'submit'}
-                   >Отправить</button>
+                   >Зарегестрироваться</button>
+                   <NavLink className="link" to='/signIn'>У меня уже есть аккаунт</NavLink>
                    {/* {props.errors ? <p>{props.errors}</p> : ''} */}
                </div>
             )}

@@ -2,10 +2,14 @@ import React from 'react';
 import '../../../style.scss';
 import Posts from "./Posts/Posts";
 
-const MainSlider = (props) => {
+const MainSlider = ({idUser, ...props}) => {
+    let text = 'Избранное'
+    if (idUser == 0) {
+        text = 'Новинки'
+    }
     return (
         <div className="wrapSlider">
-            <h3>Избранное</h3>
+            <h3>{text}</h3>
             <Posts dataPicture={props.dataPicture}/>
         </div>
     )

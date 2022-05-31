@@ -28,11 +28,11 @@ const Video = (props) => {
             >
                 <source
                     src={require('../../../../video/BoulevardDepo.mp4')}
-                    type="video/mp4"
+                    type="video/mp4" https://youtu.be/AaIrw54oonU {props.path}
                     size="576"
                 />
             </video> */}
-            <iframe className='videoPlayer' src="https://www.youtube.com/embed/BbtB0tyvRbs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+            <iframe className='videoPlayer' src={props.path} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen>
 
             </iframe>
             {/* <iframe className='videoPlayer' allowfullscreen

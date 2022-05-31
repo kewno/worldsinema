@@ -65,7 +65,8 @@ const FormSignIn = () => {
                      disabled={!isValid && !dirty}
                      onClick={handleSubmit}//   console.log(!isValid + " " + !dirty)
                      type={'submit'}
-                   >Отправить</button>
+                   >Войти</button>
+                   <NavLink className="link" to='/signUp'>Регистрация</NavLink>
                    {/* {props.errors ? <p>{props.errors}</p> : ''} */}
                </div>
             )}

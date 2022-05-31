@@ -62,9 +62,9 @@ export const setGenresThunkCreator = () => {
     }
 }
 
-export const setActivePictureThunkCreator = (idPicture) => {
+export const setActivePictureThunkCreator = (idPicture, idUser) => {
     return async (dispatch) => {
-        let response = await motionPictureAPI.getPicture(idPicture)
+        let response = await motionPictureAPI.getPicture(idPicture, idUser)
         //debu
         dispatch(setActiveCinema(response.items));
     }
@@ -89,14 +89,15 @@ export const setPictureForGenreThunkCreator = (genre) => {
 export const setCommentsForPictureThunkCreator = (picture) => {
     return async (dispatch) => {
         let response = await motionPictureAPI.getCommentsForPicture(picture)
+        debugger
         dispatch(setComments(response.items));
     }
 }
 
-export const setCommentThunkCreator = (id, comment) => {
+export const setCommentThunkCreator = (id, comment, idUser) => {
     return async (dispatch) => {
-        let response = await motionPictureAPI.postCommentsForPicture(id, comment)
-        //debugger
+        let response = await motionPictureAPI.postCommentsForPicture(id, comment, idUser)
+        debugger
         dispatch(setComments(response.items));
     }
 }
@@ -119,13 +120,24 @@ export const isAuthThunkCreator = () => {
     return async (dispatch) => {
         let response = await userAPI.isAuth()
         //debugger
-        dispatch(setAuth(response.items));
+        //"{"id":"73","name":"erbreb","surname":"erbrebb","dateRegistr":"2022-06-05","idGender":"1","login":"kkewno@mail.ru","password":"123","idRole":"1"}"
+        // let rez;
+        // let arr = response.items.split(`,`); //.split('{')
+        // for (let i = 0; i < arr.length; i++) {
+        //     let a = arr[i].split(':');
+        //     debugger
+        // } 
+        // debugger
+        if (response.items != 'Не авторизован') {
+            dispatch(setAuth(response.items))
+        }
     }
 }
 
 export const dellAuthThunkCreator = () => {
     return async (dispatch) => {
         let response = await userAPI.logout(1)
+        debugger
         dispatch(dellAuth()); 
     }
 }
@@ -139,8 +151,12 @@ export const registrationThunkCreator = (data) => {
 export const loginThunkCreator = (data) => { //login(email, password)
     return async (dispatch) => {
         let response = await userAPI.login(data.login, data.password)
-        //debugger
-        dispatch(isAuthThunkCreator())
+        debugger
+        if (response.data.items == "Авторизован") {
+            dispatch(isAuthThunkCreator())
+        } else {
+            // сообщение о ошибке
+        }
     }
 }
 
@@ -202,7 +218,7 @@ let motionPictureReducer = (state = initMotionPicture, action) => {
         if (action.auth) stateClone.auth = action.auth
             else  stateClone.auth = {}
     } else if (action.type === DELL_AUTH) {
-        stateClone.auth = {...state.auth}
+        //stateClone.auth = {...state.auth}
         //debugger
         stateClone.auth = {}
     }

@@ -10,7 +10,7 @@ const AddCommentForm = (props) => {
     // })
     //const validationsSchema ={() => ({})}
     let idCinema = useSelector(state => state.motionPicture.activeCinema.id)
-    //debugger
+    let user = useSelector(state => state.motionPicture.auth)
     let dispatch = useDispatch()
     return (
         <Formik initialValues={{
@@ -34,11 +34,13 @@ const AddCommentForm = (props) => {
                     {/*{touched.textMessage && errors.textMessage && <p>{errors.textMessage}</p>}*/}
                     <button
                         onClick={() => {
-                            if (values.textComment !== '') {
-                                //props.addComment('Данные пользователя', values.textComment)
-                                //debugger
-                                dispatch(setCommentThunkCreator(idCinema, values.textComment))//props.id
-                                values.textComment = ''
+                            if (user.id) {
+                                if (values.textComment !== '') {
+                                    //props.addComment('Данные пользователя', values.textComment)
+                                    //debugger
+                                    dispatch(setCommentThunkCreator(idCinema, values.textComment, user.id))//props.id
+                                    values.textComment = ''
+                                }
                             }
                         }}
                         type={'submit'}

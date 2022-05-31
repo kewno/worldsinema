@@ -4,22 +4,25 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import MainHeader from "./MainHeader/MainHeader";
 import MainSlider from "./MainSlider/MainSlider";
-import {connect, useDispatch} from "react-redux";
+import {connect, useDispatch, useSelector} from "react-redux";
 import {setActiveCinema, setFaviritePictureThunkCreator} from "../../redux/mainReducer";
 
 const Main = (props) => {
     const dispatch = useDispatch();
+    let user = useSelector(state => state.motionPicture.auth)
+    //debugger
+    let idUser = user.id ? user.id : 0;
     useEffect(() => {
-        dispatch(setFaviritePictureThunkCreator(1))
+        dispatch(setFaviritePictureThunkCreator(idUser))
     },[]);
     return (
         <div className="mainContainer">
             <Header/>
             <main>
                 <div className="content">
-                    <MainHeader/>
+                    <MainHeader />
         
-                    <MainSlider dataPicture={props.dataPicture}/>
+                    <MainSlider idUser={idUser} dataPicture={props.dataPicture}/>
                 </div>
             </main>
             <Footer/>
