@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import '../../../style.scss';
 import {useDispatch} from "react-redux";
+import { useParams } from 'react-router';
 
 const Pagination = ({portionSize = 2, ...props}) => {
-
+    let params = useParams();
+    let typeCinemas = params.type || 1
     let countPicture = props.motionPicture.totalPicture
     let countPage = Math.ceil(countPicture / props.motionPicture.sizePicturePage)
     let pages = [];
@@ -21,13 +23,14 @@ const Pagination = ({portionSize = 2, ...props}) => {
     // }, [portionNumber]);
 
     let prevPage = () => {
-        props.setPicture(leftPortionPageNumber - 1)
+        props.setPicture(leftPortionPageNumber - 1, 2, typeCinemas) //, 2, typeCinemas
         setPortionNumber(portionNumber - 1)
         console.log(leftPortionPageNumber - 1)
     }
 
     let nextPage = () => {
-        props.setPicture(rightPortionPageNumber + 1)
+        //debugger
+        props.setPicture(rightPortionPageNumber + 1, 2, typeCinemas)
         setPortionNumber(portionNumber + 1)
     }
     //debugger 'SELECT * FROM cinemas WHERE id >' . bottomBorder . 'AND id < ' . upBorder
@@ -42,7 +45,7 @@ const Pagination = ({portionSize = 2, ...props}) => {
                     .map((el) => {
                         return <li key={i++}><a key={el} onClick={() => {
                             window.scrollTo(0,0)
-                            return props.setPicture(el)
+                            return props.setPicture(el, 2, typeCinemas)
                         }} className={props.motionPicture.activePage === el ? 'active' : ''}>{el}</a></li>
                     })}
 

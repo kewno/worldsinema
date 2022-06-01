@@ -814,6 +814,8 @@ footer {
           margin: 0 auto;
           //max-height: 600px;
           //height: 500px;
+          height: auto;
+          max-height: 100%;
         }
         .videoPlayer {
           max-width: 1300px;
@@ -843,7 +845,7 @@ footer {
       }
     }
     .description {
-      max-width: 500px;
+      max-width: 400px;
       margin-left: 20px;
     }
 
@@ -973,6 +975,12 @@ footer {
               font-size: 22px;
             }
           }
+          .videoPlayer {
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+            height: 500px;
+          }
         }
       }
       .description {
@@ -1031,6 +1039,12 @@ footer {
             p {
               font-size: 20px;
             }
+          }
+          .videoPlayer {
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+            height: 400px;
           }
         }
       }
@@ -1092,6 +1106,9 @@ footer {
               font-size: 18px;
 
             }
+          }
+          .videoPlayer {
+            height: 300px;
           }
         }
       }
@@ -1348,4 +1365,23 @@ footer {
 			font-size: 18px;
 		}
 	}
+}
+
+
+
+@media (max-width: 400px) {
+  .containerPicture {
+    main {
+      .videoWrap {
+        .video {
+          .videoPlayer {
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+            height: 200px;
+          }
+        }
+      }
+    }
+  }
 }

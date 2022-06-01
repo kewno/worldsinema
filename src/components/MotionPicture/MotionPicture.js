@@ -11,13 +11,17 @@ import {
     setGenresThunkCreator, setPictureForGenreThunkCreator,
     setPictureThunkCreator
 } from "../../redux/motionPictureReducer";
+import { useParams } from 'react-router';
 
 const MotionPicture = (props) => {
     const dispatch = useDispatch();
+    let params = useParams();
+    let typeCinemas = params.type || 1
+    //debugger
     useEffect(() => {
         dispatch(setGenresThunkCreator())
-        dispatch(setPictureThunkCreator(1))
-    },[]);
+        dispatch(setPictureThunkCreator(1, 2, typeCinemas))
+    },[typeCinemas]);
     return (
         <div className="containerMotionPicture">
             <Header />

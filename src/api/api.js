@@ -41,8 +41,8 @@ export let userAPI = {
 }
 
 export let motionPictureAPI = {
-    getPictures(countPage = 1, sizeUserOfPage = 2) {
-        return instanse.get(`api.php?cinemas&page=${countPage}&count=${sizeUserOfPage}`)
+    getPictures(countPage = 1, sizeUserOfPage = 2, typeCinemas = 1) {
+        return instanse.get(`api.php?cinemas&page=${countPage}&count=${sizeUserOfPage}&type=${typeCinemas}`)
             .then(response => response.data)
     },
     getPicture(idPicture = 1, idUser) {
@@ -56,6 +56,7 @@ export let motionPictureAPI = {
             .then(response => response.data)
     },
     getPictureForGenre(genre) {
+        //debugger
         return instanse.get(`api.php?genre&name=${genre}`)
             .then(response => response.data)
     },

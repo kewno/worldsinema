@@ -26,8 +26,13 @@ function App() {
           <Routes>
             <Route path='/signIn' element={<SignIn />}/>
             <Route path='/signUp' element={<SignUp />}/>
-            <Route path='/motionPicture/' element={<MotionPicture />}>
+            {/* <Route path='/motionPicture/' element={<MotionPicture />}>
                 <Route path=':genreName' element={<Picture />}/>
+            </Route> */}
+            <Route path='/motionPicture/' element={<MotionPicture />}>
+              <Route path=':type' element={<MotionPicture />}>
+                <Route path=':genreName' element={<MotionPicture />}/>
+              </Route>
             </Route>
             <Route path='/picture/' element={<Picture />}>
                 <Route path=':pictureId' element={<Picture />}/>

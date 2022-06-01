@@ -11,6 +11,7 @@ const SET_ACTIVE_PAGE = 'SET_ACTIVE_PAGE';
 const SET_COMMENTS = 'SET_COMMENTS';
 const SET_AUTH = 'SET_AUTH';
 const DELL_AUTH = 'DELL_AUTH';
+const SET_ERROR = 'SET_ERROR';
 
 export const setActiveCinema = (picture) => {
     return {type: SET_ACTIVE_CINEMA, picture};
@@ -54,6 +55,9 @@ export const setAuth = (auth) => {
 export const dellAuth = (auth) => {
     return {type: DELL_AUTH, auth};
 }
+export const setError = (error) => {
+    return {type: SET_ERROR, error};
+}
 
 export const setGenresThunkCreator = () => {
     return async (dispatch) => {
@@ -70,10 +74,11 @@ export const setActivePictureThunkCreator = (idPicture, idUser) => {
     }
 }
 
-export const setPictureThunkCreator = (countPage, sizeOfPicture) => {
+export const setPictureThunkCreator = (countPage, sizeOfPicture, typeCinemas) => {
     return async (dispatch) => {
         dispatch(setActivePage(countPage))
-        let response = await motionPictureAPI.getPictures(countPage, sizeOfPicture)
+        let response = await motionPictureAPI.getPictures(countPage, sizeOfPicture, typeCinemas)
+        //debugger
         dispatch(setPicture(response.items));
         dispatch(setCountPicture(response.totalCount));
     }
@@ -82,6 +87,7 @@ export const setPictureThunkCreator = (countPage, sizeOfPicture) => {
 export const setPictureForGenreThunkCreator = (genre) => {
     return async (dispatch) => {
         let response = await motionPictureAPI.getPictureForGenre(genre)
+        //debugger
         dispatch(setPicture(response.items));
     }
 }
@@ -89,7 +95,7 @@ export const setPictureForGenreThunkCreator = (genre) => {
 export const setCommentsForPictureThunkCreator = (picture) => {
     return async (dispatch) => {
         let response = await motionPictureAPI.getCommentsForPicture(picture)
-        debugger
+        //debugger
         dispatch(setComments(response.items));
     }
 }
@@ -119,15 +125,6 @@ export const deleteFavoriteThunkCreator = (idCinema, idUser) => {
 export const isAuthThunkCreator = () => {
     return async (dispatch) => {
         let response = await userAPI.isAuth()
-        //debugger
-        //"{"id":"73","name":"erbreb","surname":"erbrebb","dateRegistr":"2022-06-05","idGender":"1","login":"kkewno@mail.ru","password":"123","idRole":"1"}"
-        // let rez;
-        // let arr = response.items.split(`,`); //.split('{')
-        // for (let i = 0; i < arr.length; i++) {
-        //     let a = arr[i].split(':');
-        //     debugger
-        // } 
-        // debugger
         if (response.items != 'Не авторизован') {
             dispatch(setAuth(response.items))
         }
@@ -145,6 +142,13 @@ export const dellAuthThunkCreator = () => {
 export const registrationThunkCreator = (data) => {
     return async (dispatch) => {
         let response = await userAPI.registration(data.name, data.surname, '2022-06-05', data.login, data.password, data.gender)
+        //debugger
+        if (response.data.items == "Данный email уже используется") {
+            dispatch(setError("Данный email уже используется"))
+        } else if (response.data.items == "Зарегистрирован") {
+            dispatch(setError("Зарегистрирован"))
+        }
+        
     }
 }
 
@@ -155,7 +159,7 @@ export const loginThunkCreator = (data) => { //login(email, password)
         if (response.data.items == "Авторизован") {
             dispatch(isAuthThunkCreator())
         } else {
-            // сообщение о ошибке
+            dispatch(setError(response.data.items))
         }
     }
 }
@@ -179,7 +183,8 @@ let initMotionPicture = {
     activeCinema: {id: 1, name: 'Во все тяжкие1', path: 'pyt 1', poster: 'poster 1', country: 'США1', rating: '11', description: '123 Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores ducimus sequi deserunt. Molestias veniam, cupiditate placeat explicabo quisquam voluptas et culpa, repellat esse quidem iure blanditiis', years: '2007-2016', producer: 'Винс гиллиган', tags : ['Криминальная драма', 'Черная комедия'], favourites: false},//this.motionData.length
     genre: [{name: 'Триллер'}],
     comments: [],
-    auth: {}
+    auth: {},
+    errors: {}
 }
 
 let motionPictureReducer = (state = initMotionPicture, action) => {
@@ -196,7 +201,6 @@ let motionPictureReducer = (state = initMotionPicture, action) => {
         if (stateClone.activeCinema.favorites == '0') stateClone.activeCinema.favorites = false
         if (stateClone.activeCinema.favorites == '1') stateClone.activeCinema.favorites = true
         stateClone.activeCinema.favorites = !stateClone.activeCinema.favorites;
-        //stateClone.activeCinema = {...stateClone.motionData[id]}
     } else if (action.type === ADD_COMMENT) {
         stateClone.comments = [...state.comments]
         stateClone.comments.push({userName : action.userName, messages: action.message});
@@ -214,13 +218,13 @@ let motionPictureReducer = (state = initMotionPicture, action) => {
         stateClone.comments = action.comments
     } else if (action.type === SET_AUTH) {
         stateClone.auth = {...state.auth}
-        //debugger
         if (action.auth) stateClone.auth = action.auth
-            else  stateClone.auth = {}
+            else  stateClone.auth = {} 
     } else if (action.type === DELL_AUTH) {
-        //stateClone.auth = {...state.auth}
-        //debugger
         stateClone.auth = {}
+    } else if (action.type === SET_ERROR) {
+        stateClone.errors = {...stateClone.errors}
+        stateClone.errors.auth = action.error
     }
     return stateClone;
 }

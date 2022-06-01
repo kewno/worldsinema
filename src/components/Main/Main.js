@@ -14,7 +14,8 @@ const Main = (props) => {
     let idUser = user.id ? user.id : 0;
     useEffect(() => {
         dispatch(setFaviritePictureThunkCreator(idUser))
-    },[]);
+    },[user]);
+    
     return (
         <div className="mainContainer">
             <Header/>

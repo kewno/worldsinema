@@ -2,7 +2,6 @@ import React from 'react';
 import '../../../../../style.scss';
 
 const CommentUser = (props) => { //avatar
-    //debugger
     return (
         <div className="comment">
             <img className="" src={`https://u129668.test-handyhost.ru/avatar/${props.avatar}`} alt=""/>

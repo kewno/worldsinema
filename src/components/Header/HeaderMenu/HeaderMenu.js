@@ -6,8 +6,8 @@ const HeaderMenu = () => {
     return (
         <nav className="menu">
             <ul>
-                <li><NavLink to='/motionPicture' className="link">Фильмы</NavLink></li>
-                <li><NavLink to='/motionPicture' className="link">Сериалы</NavLink></li>
+                <li><NavLink to='/motionPicture/1' className="link">Фильмы</NavLink></li>
+                <li><NavLink to='/motionPicture/2' className="link">Сериалы</NavLink></li>
                 <li><NavLink to='/aboutUs' className="link">О нас</NavLink></li>
             </ul>
         </nav>

@@ -3,7 +3,6 @@ import '../../../../style.scss';
 import CommentUser from "./CommentUser/CommentUser";
 
 const CommentsUser = (props) => {
-    debugger
     return (
         <div className="allComments">
             {props.comments.map(el => {
