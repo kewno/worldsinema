@@ -19,7 +19,8 @@ const Post = (props) => {
             </div>
             <div className="post">
                 {/* <img src={require('../../../../img/post-1.png')} alt="post"/> */}
-                <img src={`http://a0677263.xsph.ru/posters/${props.poster}`} alt="post"/>
+                {/* src={`http://a0677263.xsph.ru/posters/${props.poster}`} */}
+                <img src={`https://u129668.test-handyhost.ru/posters/${props.poster}`} alt="post"/>
                     <div className="description">
                         <p className="producer"><span>Режиссёр: </span>{props.producer}</p>
                         <p className="country"><span>Страна: </span>{props.country}</p>

@@ -27,12 +27,12 @@ const Tags = (props) => {
                     dispatch(deleteFavoriteThunkCreator(id, auth.id))
                 }
                 //return props.toggleFavorites()
-            }} src={require('../../../../../img/starA.png')} alt="" id="star-5"/> : <img onClick={() => {
+            }} src={`https://u129668.test-handyhost.ru/img/starA.png`} alt="" id="star-5"/> : <img onClick={() => {
                 if (auth.id) {
                     dispatch(setFavoriteThunkCreator(id, auth.id))
                 }
                 //return props.toggleFavorites()
-            }} src={require('../../../../../img/star.png')} alt="" id="star-5"/>}
+            }} src={`https://u129668.test-handyhost.ru/img/star.png`} alt="" id="star-5"/>}
             {/*<img src={require('../../../../../img/star.png')} alt="" id="star-5"/>*/}
         </div>
     )

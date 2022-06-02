@@ -4,7 +4,8 @@ import '../../../../../style.scss';
 const Frame = () => {
     return (
         <div className="frame">
-            <img src={require('../../../../../img/cadr-1.png')} alt=""/>
+            <img src={`https://u129668.test-handyhost.ru/img/cadr-1.png`} alt=""/>
+
         </div>
     )
 }
