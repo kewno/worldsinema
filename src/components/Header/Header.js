@@ -4,7 +4,6 @@ import HeaderTitle from "./HeaderTitle/HeaderTitle";
 import HeaderMenu from "./HeaderMenu/HeaderMenu";
 import HeaderUserData from "./HeaderUserData/HeaderUserData";
 import { useDispatch, useSelector } from 'react-redux';
-import { registrationThunkCreator, isAuthThunkCreator } from '../../redux/mainReducer';
 
 const Header = () => {
     let dispatch = useDispatch()
